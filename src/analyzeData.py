@@ -17,7 +17,6 @@ def getRequiredColumns(dataTable, sortColumn):
     return sortedList
 
 
-
 def sortTotalCases(dataTable):
     #getting and sorting the required columns
     sortedList = getRequiredColumns(dataTable, "Total_Cases")
@@ -31,6 +30,8 @@ def sortTotalCases(dataTable):
     file = open("Total_Cases.txt", "w")
     for i in range(len(sortedList)):
         file.write(sortedList[i][countryCol] + ", " + str(sortedList[i][casesCol]) + "\n")
+
+    return sortedList
 
 
 def sortNewCases(dataTable):
@@ -46,6 +47,8 @@ def sortNewCases(dataTable):
     file = open("New_Cases.txt", "w")
     for i in range(len(sortedList)):
         file.write(sortedList[i][countryCol] + ", " + str(sortedList[i][casesCol]) + "\n")
+    
+    return sortedList
 
 
 def sortTotalDeaths(dataTable):
@@ -61,6 +64,8 @@ def sortTotalDeaths(dataTable):
     file = open("Total_Deaths.txt", "w")
     for i in range(len(sortedList)):
         file.write(sortedList[i][countryCol] + ", " + str(sortedList[i][casesCol]) + "\n")
+
+    return sortedList
     
 
 def sortTotalRecovered(dataTable):
@@ -77,6 +82,9 @@ def sortTotalRecovered(dataTable):
     for i in range(len(sortedList)):
         file.write(sortedList[i][countryCol] + ", " + str(sortedList[i][casesCol]) + "\n")
 
+    return sortedList
+
+
 def sortActiveCases(dataTable):
     #getting and sorting the required columns
     sortedList = getRequiredColumns(dataTable, "Active_Cases")
@@ -90,6 +98,9 @@ def sortActiveCases(dataTable):
     file = open("Active_Cases.txt", "w")
     for i in range(len(sortedList)):
         file.write(sortedList[i][countryCol] + ", " + str(sortedList[i][casesCol]) + "\n")
+
+    return sortedList
+    
 
 def main():
     dict = {"USA": {"Total_Cases": 200, "New_Cases": 300},
