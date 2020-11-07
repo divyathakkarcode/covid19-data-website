@@ -1,20 +1,7 @@
 {% extends "base.html" %}
 
-{% block heatMapCSS %}
-<style>
-    /* Always set the map height explicitly to define the size of the div
-     * element that contains the map. */
-    #map {
-      height: 50%;
-    }
-    /* Optional: Makes the sample page fill the window. */
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-  </style>
-
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}">
 {% endblock %}
 
 
@@ -78,4 +65,45 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvrxhQqErBmsb8QcvMZT8hAmW8s0yB47I&libraries=visualization&callback=initMap">
     </script>
   </body>
+{% endblock %}
+
+
+{% block chart %}
+<div>
+
+    <div class="grid-child">
+
+        <canvas id="myChart" ></canvas>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        ctx.canvas.width = 450;
+        ctx.canvas.height = 300;
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'horizontalBar',
+
+            // The data for our dataset
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [{
+                    label: 'My First dataset',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [0, 10, 5, 2, 20, 30, 45]
+                }]
+            },
+
+            // Configuration options go here
+            options: {
+                responsive: false,
+                maintainAspectRatio: true
+            }
+        });
+        </script>
+    </div>
+    <div class="grid-child">
+        DEMO
+    </div>
+</div>
 {% endblock %}
