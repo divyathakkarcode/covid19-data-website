@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}">
+{% endblock %}
+
+
+{% block title %}Home page{% endblock %}
+
+{% block content %}Global - Virus Tracking Map{% endblock %}
+
+{% block heatMapBlock %}
+<body>
+    <div id="map"></div>
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 2,
+          center: {lat: 40, lng: 0},
+          mapTypeId: 'terrain'
+        });
+
+        // Create a <script> tag and set the USGS URL as the source.
+        var script = document.createElement('script');
+
+        // This example uses a local copy of the GeoJSON stored at
+        // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+        script.src = 'map.geojson';
+        document.getElementsByTagName('head')[0].appendChild(script);
+
+      }
+
+      function eqfeed_callback(results) {
+        var heatmapData = [];
+        for (var i = 0; i < results.features.length; i++) {
+          var coords = results.features[i].geometry.coordinates;
+          var latLng = new google.maps.LatLng(coords[1], coords[0]);
+          var rating = results.features[i].rating;
+          var weights = 0;
+            if (rating >= 25){
+                //weights = 0.1;
+
+                 
+                if (25 <= rating && rating < 50){
+                    weights =  1;
+                }else{
+                    weights = 5;
+                }
+                heatmapData.push({location: latLng,weight: weights});
+            }
+
+            
+        }
+
+        var heatmap = new google.maps.visualization.HeatmapLayer({
+          data: heatmapData,
+          dissipating: false,
+          radius: 1,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvrxhQqErBmsb8QcvMZT8hAmW8s0yB47I&libraries=visualization&callback=initMap">
+    </script>
+  </body>
+{% endblock %}
+
+
+{% block chart %}
+<br>
+<div class="grid-container">
+
+    <div class="grid-child">
+
+        <canvas id="myChart" style="margin:auto"></canvas>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        ctx.canvas.width = 450;
+        ctx.canvas.height = 300;
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'horizontalBar',
+
+            // The data for our dataset
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                datasets: [{
+                    label: 'My First dataset',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [0, 10, 5, 2, 20, 30, 45]
+                }]
+            },
+
+            // Configuration options go here
+            options: {
+                responsive: false,
+                maintainAspectRatio: true
+            }
+        });
+        </script>
+    </div>
+    <div class="grid-child">
+        <br>
+        <br>
+        <form action="/"> 
+            <label for="options">Choose a option to filter data by:</label>
+            <select name="options" id="options">
+                <option value="Total_Cases">Total Cases</option>
+                <option value="New_Cases">New Cases</option>
+                <option value="New_Deaths">New Deaths</option>
+                <option value="Total_Recovered">Total Recovered</option>
+                <option value="Active Cases">Active Cases</option>
+            </select>
+            <input type="submit" value="Submit">
+        </form> 
+    </div>
+</div>
+{% endblock %}
