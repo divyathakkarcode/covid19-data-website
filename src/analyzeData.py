@@ -10,8 +10,9 @@ def getRequiredColumns(dataTable, sortColumn):
     for entry in dict:
         requiredList.append([entry, dict[entry][sortColumn]])
 
-    #sorting the 2d list based on the second column (sortColumn)
-    sortedList = sorted(requiredList, key = lambda x:x[1])
+    #sorting the 2d list based on the second column (sortColumn) first
+    #sorting by country name (first column) if it is a tie
+    sortedList = sorted(requiredList, key = lambda x:(x[1], x[0]))
 
     return sortedList
 
