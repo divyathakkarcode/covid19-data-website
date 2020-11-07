@@ -36,6 +36,19 @@ def sortTotalRecovered(dataTable):
 def sortActiveCases(dataTable):
     return getRequiredColumns(dataTable, "Active_Cases")
 
+def getLocations(dataTable):
+    dict = dataTable
+
+    #making a 2d list with the required columns
+    requiredList = []
+    for entry in dict:
+        requiredList.append([entry, dict[entry]["Latitude"], dict[entry]["Longitude"]])
+
+    return requiredList
+
+    
+
+
 """ 
 def main():
     dict = {"USA": {"Total_Cases": 200, "New_Cases": 300},
