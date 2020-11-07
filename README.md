@@ -1,7 +1,7 @@
 # Installation Guide
-* Before running: 
-** Have flask installed
-** Have the python library CountryInfo installed
+- Before running: 
+  - Have flask installed
+  - Have the python library CountryInfo installed
 
 * To run: Run the python file test.py (python3 test.py)
 
