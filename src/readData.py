@@ -28,14 +28,14 @@ def readData(file): # file is the testing file, while Country_Name is a dictiona
         country = CountryInfo( meas[0][2 : (size[0] - 2)])
         lat_lng = country.latlng()
 
-        Country_Name[meas[0][2:(size[0]-2)]] = { meas[0][2 : (size[0] - 2)]: {
+        Country_Name[meas[0][2:(size[0]-2)]] = {
             "Total_Cases": int(meas[1][1 : (size[1] - 1)]), 
             "New_Cases": int(meas[2][1 : (size[2] - 1)]),
             "Total_Deaths" : int(meas[3][1 : (size[3] - 1)]),
             "Total_Recovered" : int(meas[4][1 : (size[4] - 1)]),
             "Active_Cases" : int(meas[5][1 : (size[5] - 1)]),
             "Latitude" : lat_lng[0],
-            "Longitude" : lat_lng[1]}
+            "Longitude" : lat_lng[1]
         }
     f.close()
 
