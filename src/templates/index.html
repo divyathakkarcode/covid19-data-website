@@ -76,38 +76,13 @@
 
         <canvas id="myChart" style="margin:auto"></canvas>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-        <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        ctx.canvas.width = 450;
-        ctx.canvas.height = 300;
-        var chart = new Chart(ctx, {
-            // The type of chart we want to create
-            type: 'horizontalBar',
-
-            // The data for our dataset
-            data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                datasets: [{
-                    label: 'My First dataset',
-                    backgroundColor: 'rgb(255, 99, 132)',
-                    borderColor: 'rgb(255, 99, 132)',
-                    data: [0, 10, 5, 2, 20, 30, 45]
-                }]
-            },
-
-            // Configuration options go here
-            options: {
-                responsive: false,
-                maintainAspectRatio: true
-            }
-        });
-        </script>
+        
     </div>
     <div class="grid-child">
         <br>
         <br>
-        <form action="/"> 
-            <label for="options">Choose a option to filter data by:</label>
+        
+            <label for="option">Choose a option to filter data by:</label>
             <select name="options" id="options">
                 <option value="Total_Cases">Total Cases</option>
                 <option value="New_Cases">New Cases</option>
@@ -115,8 +90,43 @@
                 <option value="Total_Recovered">Total Recovered</option>
                 <option value="Active Cases">Active Cases</option>
             </select>
-            <input type="submit" value="Submit">
-        </form> 
+       
     </div>
 </div>
+<script>
+        
+    var optionName = document.getElementById('options').value;
+    console.log(optionName);
+
+    var myList;
+$.getJSON('test.json')
+.done(function (data) {
+myList = data;
+});
+    console.log(myList);
+    var ctx = document.getElementById('myChart').getContext('2d');
+    ctx.canvas.width = 450;
+    ctx.canvas.height = 300;
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'horizontalBar',
+
+        // The data for our dataset
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [0, 10, 5, 2, 20, 30, 45]
+            }]
+        },
+
+        // Configuration options go here
+        options: {
+            responsive: false,
+            maintainAspectRatio: true
+        }
+    });
+    </script>
 {% endblock %}

@@ -10,11 +10,11 @@ def getRequiredColumns(dataTable, sortColumn):
     for entry in dict:
         requiredList.append([entry, dict[entry][sortColumn]])
 
-    #sorting the 2d list based on the second column (sortColumn)
-    sortedList = sorted(requiredList, key = lambda x:x[1])
+    #sorting the 2d list based on the second column (sortColumn) first
+    #sorting by country name (first column) if it is a tie
+    sortedList = sorted(requiredList, key = lambda x:(x[1], x[0]))
 
     return sortedList
-
 
 
 def sortTotalCases(dataTable):
@@ -31,6 +31,8 @@ def sortTotalCases(dataTable):
     for i in range(len(sortedList)):
         file.write(sortedList[i][countryCol] + ", " + str(sortedList[i][casesCol]) + "\n")
 
+    return sortedList
+
 
 def sortNewCases(dataTable):
     #getting and sorting the required columns
@@ -45,6 +47,8 @@ def sortNewCases(dataTable):
     file = open("New_Cases.txt", "w")
     for i in range(len(sortedList)):
         file.write(sortedList[i][countryCol] + ", " + str(sortedList[i][casesCol]) + "\n")
+    
+    return sortedList
 
 
 def sortTotalDeaths(dataTable):
@@ -60,6 +64,8 @@ def sortTotalDeaths(dataTable):
     file = open("Total_Deaths.txt", "w")
     for i in range(len(sortedList)):
         file.write(sortedList[i][countryCol] + ", " + str(sortedList[i][casesCol]) + "\n")
+
+    return sortedList
     
 
 def sortTotalRecovered(dataTable):
@@ -76,6 +82,9 @@ def sortTotalRecovered(dataTable):
     for i in range(len(sortedList)):
         file.write(sortedList[i][countryCol] + ", " + str(sortedList[i][casesCol]) + "\n")
 
+    return sortedList
+
+
 def sortActiveCases(dataTable):
     #getting and sorting the required columns
     sortedList = getRequiredColumns(dataTable, "Active_Cases")
@@ -89,6 +98,9 @@ def sortActiveCases(dataTable):
     file = open("Active_Cases.txt", "w")
     for i in range(len(sortedList)):
         file.write(sortedList[i][countryCol] + ", " + str(sortedList[i][casesCol]) + "\n")
+
+    return sortedList
+    
 
 def main():
     dict = {"USA": {"Total_Cases": 200, "New_Cases": 300},
