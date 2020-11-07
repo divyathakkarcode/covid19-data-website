@@ -18,90 +18,25 @@ def getRequiredColumns(dataTable, sortColumn):
 
 
 def sortTotalCases(dataTable):
-    #getting and sorting the required columns
-    sortedList = getRequiredColumns(dataTable, "Total_Cases")
-    
-    #column names
-    countryCol = 0
-    casesCol = 1
-
-
-    #writing to results to the file
-    file = open("Total_Cases.txt", "w")
-    for i in range(len(sortedList)):
-        file.write(sortedList[i][countryCol] + ", " + str(sortedList[i][casesCol]) + "\n")
-
-    return sortedList
+    return getRequiredColumns(dataTable, "Total_Cases")
 
 
 def sortNewCases(dataTable):
-    #getting and sorting the required columns
-    sortedList = getRequiredColumns(dataTable, "New_Cases")
-    
-    #column names
-    countryCol = 0
-    casesCol = 1
-
-
-    #writing to results to the file
-    file = open("New_Cases.txt", "w")
-    for i in range(len(sortedList)):
-        file.write(sortedList[i][countryCol] + ", " + str(sortedList[i][casesCol]) + "\n")
-    
-    return sortedList
+    return getRequiredColumns(dataTable, "New_Cases")
 
 
 def sortTotalDeaths(dataTable):
-    #getting and sorting the required columns
-    sortedList = getRequiredColumns(dataTable, "Total_Deaths")
-    
-    #column names
-    countryCol = 0
-    casesCol = 1
-
-
-    #writing to results to the file
-    file = open("Total_Deaths.txt", "w")
-    for i in range(len(sortedList)):
-        file.write(sortedList[i][countryCol] + ", " + str(sortedList[i][casesCol]) + "\n")
-
-    return sortedList
+    return getRequiredColumns(dataTable, "Total_Deaths")
     
 
 def sortTotalRecovered(dataTable):
-    #getting and sorting the required columns
-    sortedList = getRequiredColumns(dataTable, "Total_Recovered")
-    
-    #column names
-    countryCol = 0
-    casesCol = 1
-
-
-    #writing to results to the file
-    file = open("Total_Recovered.txt", "w")
-    for i in range(len(sortedList)):
-        file.write(sortedList[i][countryCol] + ", " + str(sortedList[i][casesCol]) + "\n")
-
-    return sortedList
+    return getRequiredColumns(dataTable, "Total_Recovered")
 
 
 def sortActiveCases(dataTable):
-    #getting and sorting the required columns
-    sortedList = getRequiredColumns(dataTable, "Active_Cases")
-    
-    #column names
-    countryCol = 0
-    casesCol = 1
+    return getRequiredColumns(dataTable, "Active_Cases")
 
-
-    #writing to results to the file
-    file = open("Active_Cases.txt", "w")
-    for i in range(len(sortedList)):
-        file.write(sortedList[i][countryCol] + ", " + str(sortedList[i][casesCol]) + "\n")
-
-    return sortedList
-    
-
+""" 
 def main():
     dict = {"USA": {"Total_Cases": 200, "New_Cases": 300},
             "India": {"Total_Cases": 2030, "New_Cases": 300},
@@ -111,4 +46,4 @@ def main():
     sortTotalCases(dict)
     sortNewCases(dict)
 
-main()
+main() """
