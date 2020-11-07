@@ -7,11 +7,13 @@ import json
 app = Flask(__name__)
 
 global totalCases, newCases, totalDeaths, totalRecovered, activeCases
+
 totalCases = None
 newCases = None
 totalDeaths = None
 totalRecovered = None
 activeCases = None
+
 Data = readData("../testing.txt") 
 totalCases = sortTotalCases(Data)
 newCases = sortNewCases(Data)
@@ -22,8 +24,7 @@ activeCases = sortActiveCases(Data)
 @app.route("/")
 def home():
 
-    
-    return render_template("index.html", country1=totalCases[0][0], country2=totalCases[1][0], country3=totalCases[2][0], country4=totalCases[3][0], country5=totalCases[4][0],  value1=totalCases[0][1], value2=totalCases[1][1], value3=totalCases[2][1], value4=totalCases[3][1], value5=totalCases[4][1])
+    return render_template("index.html", country1=totalCases[-1][0], country2=totalCases[-2][0], country3=totalCases[-3][0], country4=totalCases[-4][0], country5=totalCases[-5][0],  value1=totalCases[-1][1], value2=totalCases[-2][1], value3=totalCases[-3][1], value4=totalCases[-4][1], value5=totalCases[-5][1])
 
 
 ### making temporary webpages and making tables for each scenario, goal was to read from the first 5 countries and the number of 
@@ -89,5 +90,10 @@ def Active_Cases():
     string += "</table>"
 
     return string
+
+@app.route("/map.geojson")
+def geoJson():
+    return
+
 if __name__ == "__main__":
     app.run()

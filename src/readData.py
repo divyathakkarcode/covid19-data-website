@@ -1,5 +1,7 @@
 from countryinfo import CountryInfo
 import math
+import json
+
 def readData(file): # file is the testing file, while Country_Name is a dictionary to hold the data
     f = open(file, "r")
 
@@ -37,6 +39,14 @@ def readData(file): # file is the testing file, while Country_Name is a dictiona
             "Latitude" : lat_lng[0],
             "Longitude" : lat_lng[1]
         }
+    
+    
     f.close()
 
+    jsonObj = json.dumps(Country_Name)
+    
+    f = open("map.geojson", "w")
+    f.write(jsonObj)
+    
     return Country_Name
+

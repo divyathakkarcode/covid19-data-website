@@ -30,8 +30,12 @@
     
     .grid-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 100px;
+    grid-template-columns: 0fr 0fr;
+    grid-gap: 10px;
+    }
+
+    .grid-child{
+        text-align: center;
     }
     
     #options{
@@ -60,7 +64,7 @@
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 2,
-          center: {lat: 40, lng: 0},
+          center: {lat: 0, lng: 0},
           mapTypeId: 'terrain'
         });
 
@@ -77,10 +81,11 @@
       
       function eqfeed_callback(results) {
         var heatmapData = [];
-        for (var i = 0; i < results.features.length; i++) {
-          var coords = results.features[i].geometry.coordinates;
-          var latLng = new google.maps.LatLng(coords[1], coords[0]);
-          var rating = results.features[i].rating;
+        console.log(results);
+        for (var i = 0; i < results.length; i++) {
+          
+          var latLng = new google.maps.LatLng(results[i].Latitude, results[i].Longitude);
+          var rating = results.features[i].Total_Cases;
           var weights = 0;
             if (rating >= 25){
                 //weights = 0.1;
@@ -121,6 +126,7 @@
 
         <canvas id="myChart" style="margin:auto"></canvas>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
         
     </div>
     <div class="grid-child">
