@@ -1,16 +1,59 @@
 {% extends "base.html" %}
 
 {% block css %}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}">
+<!--<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/styles.css') }}"> -->
+<style>
+    #map { 
+    height: 50%;
+    width: 60%;
+    margin: auto;
+    }
+    
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    }
+    
+    #header{
+    margin: -7px 0px 10px 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #e6e6e6;
+    }
+    
+    #title{
+    font-size: 45px;
+    text-align: center;
+    }
+    
+    .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 100px;
+    }
+    
+    #options{
+    padding: 8px 3px 8px 8px;
+    border-color: #ababab;
+    border-radius: 4px;
+    color: #333333;
+    font-size: 13px;
+    }
+   </style>
 {% endblock %}
 
 
 {% block title %}Home page{% endblock %}
 
-{% block content %}Global - Virus Tracking Map{% endblock %}
+
 
 {% block heatMapBlock %}
 <body>
+    <div id="header">
+    <header id="title">Global - Virus Tracking Map</header>
+     </div>
     <div id="map"></div>
     <script>
       var map;
@@ -31,6 +74,7 @@
 
       }
 
+      
       function eqfeed_callback(results) {
         var heatmapData = [];
         for (var i = 0; i < results.features.length; i++) {
@@ -95,16 +139,12 @@
     </div>
 </div>
 <script>
-        
+    //get current option name
     var optionName = document.getElementById('options').value;
     console.log(optionName);
 
 
-    var labels = [];
-    for(var i = 0; i < 5; i ++){
-        labels
-    }
-    console.log(myList);
+    
     var ctx = document.getElementById('myChart').getContext('2d');
     ctx.canvas.width = 450;
     ctx.canvas.height = 300;
@@ -114,12 +154,13 @@
 
         // The data for our dataset
         data: {
-            labels: [{{country1}}, {{country2}}, {{country3}}, {{country4}}, {{country5}}],
+            //get countryNames
+            labels: ['{{country1}}','{{country2}}', '{{country3}}', '{{country4}}', '{{country5}}'],
             datasets: [{
-                label: 'My First dataset',
+                label: optionName,
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45]
+                data: ['{{value1}}', '{{value2}}', '{{value3}}', '{{value4}}', '{{value5}}']
             }]
         },
 
