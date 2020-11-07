@@ -69,11 +69,12 @@
 
 
 {% block chart %}
-<div>
+<br>
+<div class="grid-container">
 
     <div class="grid-child">
 
-        <canvas id="myChart" ></canvas>
+        <canvas id="myChart" style="margin:auto"></canvas>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
         <script>
         var ctx = document.getElementById('myChart').getContext('2d');
@@ -103,7 +104,19 @@
         </script>
     </div>
     <div class="grid-child">
-        DEMO
+        <br>
+        <br>
+        <form action="/"> 
+            <label for="options">Choose a option to filter data by:</label>
+            <select name="options" id="options">
+                <option value="Total_Cases">Total Cases</option>
+                <option value="New_Cases">New Cases</option>
+                <option value="New_Deaths">New Deaths</option>
+                <option value="Total_Recovered">Total Recovered</option>
+                <option value="Active Cases">Active Cases</option>
+            </select>
+            <input type="submit" value="Submit">
+        </form> 
     </div>
 </div>
 {% endblock %}
