@@ -16,7 +16,6 @@ def readData(file): # file is the testing file, while Country_Name is a dictiona
                 meas[i]="[0]\n"
             elif meas[i] == "[]":
                 meas[i]="[0]"
-            print (meas[i])
         #the sizes of each data value
         size[0] = len(meas[0])
         size[1] = len(meas[1])
