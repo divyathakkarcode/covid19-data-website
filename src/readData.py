@@ -1,9 +1,9 @@
 from countryinfo import CountryInfo
 import math
-def readData(file, Country_Name): # file is the testing file, while Country_Name is a dictionary to hold the data
+def readData(file): # file is the testing file, while Country_Name is a dictionary to hold the data
     f = open(file, "r")
 
-    Country_Name.clear
+    Country_Name = {}
 
     size = [0, 0, 0, 0, 0, 0]
 
