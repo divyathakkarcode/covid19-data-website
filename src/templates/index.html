@@ -67,6 +67,7 @@
   </body>
 {% endblock %}
 
+{{country1}}
 
 {% block chart %}
 <br>
@@ -98,11 +99,11 @@
     var optionName = document.getElementById('options').value;
     console.log(optionName);
 
-    var myList;
-$.getJSON('test.json')
-.done(function (data) {
-myList = data;
-});
+
+    var labels = [];
+    for(var i = 0; i < 5; i ++){
+        labels
+    }
     console.log(myList);
     var ctx = document.getElementById('myChart').getContext('2d');
     ctx.canvas.width = 450;
@@ -113,7 +114,7 @@ myList = data;
 
         // The data for our dataset
         data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: [{{country1}}, {{country2}}, {{country3}}, {{country4}}, {{country5}}],
             datasets: [{
                 label: 'My First dataset',
                 backgroundColor: 'rgb(255, 99, 132)',
