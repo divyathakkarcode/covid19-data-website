@@ -1,9 +1,9 @@
 from countryinfo import CountryInfo
 import math
-def readData():
-    f = open("testing.txt", "r")
+def readData(file, Country_Name): # file is the testing file, while Country_Name is a dictionary to hold the data
+    f = open(file, "r")
 
-    Country_Name =  {}
+    Country_Name.clear
 
     size = [0, 0, 0, 0, 0, 0]
 
@@ -17,6 +17,7 @@ def readData():
             elif meas[i] == "[]":
                 meas[i]="[0]"
             print (meas[i])
+        #the sizes of each data value
         size[0] = len(meas[0])
         size[1] = len(meas[1])
         size[2] = len(meas[2])
@@ -24,6 +25,7 @@ def readData():
         size[4] = len(meas[4])
         size[5] = len(meas[5])
 
+        #using the countryingo library
         country = CountryInfo( meas[0][2 : (size[0] - 2)])
         lat_lng = country.latlng()
 
