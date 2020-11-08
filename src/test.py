@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, render_template
+from flask import Flask, redirect, url_for, render_template, jsonify
 from readData import *
 from analyzeData import *
 
@@ -6,7 +6,7 @@ import json
 
 app = Flask(__name__)
 
-global totalCases, newCases, totalDeaths, totalRecovered, activeCases
+global totalCases, newCases, totalDeaths, totalRecovered, activeCases, jsonObj
 
 totalCases = None
 newCases = None
@@ -20,6 +20,7 @@ newCases = sortNewCases(Data)
 totalDeaths = sortTotalDeaths(Data)
 totalRecovered = sortTotalRecovered(Data)
 activeCases = sortActiveCases(Data)
+jsonObj = createJSONFile(Data)
 
 @app.route("/")
 def home():
@@ -93,7 +94,10 @@ def Active_Cases():
 
 @app.route("/map.geojson")
 def geoJson():
-    return
+    string = "eqfeed_callback("
+    string += str((jsonObj))
+    string += ")"
+    return string
 
 if __name__ == "__main__":
     app.run()

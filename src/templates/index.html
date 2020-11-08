@@ -81,21 +81,31 @@
       
       function eqfeed_callback(results) {
         var heatmapData = [];
-        console.log(results);
-        for (var i = 0; i < results.length; i++) {
+       
+        for (var key of Object.keys(results)) {
+           console.log(results[key].Total_Cases);
+
+
+           var latLng;
+          var rating ;
+          var weights; 
+           
+            
+             latLng = new google.maps.LatLng(results[key].Latitude, results[key].Longitude);
+             rating = results[key].New_Cases;
+             
+           
           
-          var latLng = new google.maps.LatLng(results[i].Latitude, results[i].Longitude);
-          var rating = results.features[i].Total_Cases;
-          var weights = 0;
-            if (rating >= 25){
-                //weights = 0.1;
+          console.log(rating);
+            if (rating >= 1000){
+                weights = 1000;
 
                  
-                if (25 <= rating && rating < 50){
-                    weights =  1;
-                }else{
-                    weights = 5;
-                }
+                
+
+                heatmapData.push({location: latLng,weight: weights});
+            }else if (500 <= rating && rating < 1000){
+                weights = 100;
                 heatmapData.push({location: latLng,weight: weights});
             }
 

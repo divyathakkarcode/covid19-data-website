@@ -43,10 +43,17 @@ def readData(file): # file is the testing file, while Country_Name is a dictiona
     
     f.close()
 
-    jsonObj = json.dumps(Country_Name)
-    
-    f = open("map.geojson", "w")
-    f.write(jsonObj)
+  
     
     return Country_Name
 
+def createJSONFile(dictName):
+    
+    jsonObj = json.dumps(dictName)
+    
+    
+    f = open("map.geojson", "w")
+    f.write(jsonObj)
+    f.close()
+    
+    return jsonObj
