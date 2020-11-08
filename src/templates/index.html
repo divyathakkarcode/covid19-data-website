@@ -92,19 +92,19 @@
            
             
              latLng = new google.maps.LatLng(results[key].Latitude, results[key].Longitude);
-             rating = results[key].New_Cases;
+             rating = results[key].Total_Cases;
              
            
           
           console.log(rating);
-            if (rating >= 1000){
+            if (rating >= 100000){
                 weights = 1000;
 
                  
                 
 
                 heatmapData.push({location: latLng,weight: weights});
-            }else if (500 <= rating && rating < 1000){
+            }else if (50000 <= rating && rating < 100000){
                 weights = 100;
                 heatmapData.push({location: latLng,weight: weights});
             }
