@@ -1,6 +1,5 @@
 # Covid-19 Data Website
-McMaster Engineering Competition 2020 Entry
-(Won 1st Place Overall)
+Placed 1st Overall with this Entry at the 2020 McMaster Engineering Competition
 
 ## About
 - Designed a website using HTML & CSS that presented countries’ sorted data on infection, mortality and recovery
