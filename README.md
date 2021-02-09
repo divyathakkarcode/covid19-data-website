@@ -2,6 +2,12 @@
 McMaster Engineering Competition 2020 Entry
 (Won 1st Place Overall)
 
+## About
+•	Designed a website using HTML & CSS that presented countries’ sorted data on infection, mortality and recovery
+•	Used Python & Flask to process input statistics with efficient sorting algorithms in identifying trends and warnings
+•	Leveraged a GeoJSON API to visually display a Heat-Map of the concentration of cases
+
+
 ## Team Members
 * Namit Chopra
 * Andrew Balmakund 
