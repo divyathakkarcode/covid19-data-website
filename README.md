@@ -13,7 +13,7 @@ Placed 1st Overall with this Entry at the 2020 McMaster Engineering Competition
 * Divya Thakkar
 * Janahan Rajagopalan
 
-# Installation Guide
+## Installation Guide
 - Before running: 
   - Have flask installed
   - Have the python library CountryInfo installed
